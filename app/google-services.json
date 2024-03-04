@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "89355495949",
+    "project_id": "whatsapp-14857",
+    "storage_bucket": "whatsapp-14857.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89355495949:android:6c50d973f7fa84184fc344",
+        "android_client_info": {
+          "package_name": "com.gtavares.whatsapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWCgfvCkvSdCVFbHBJewn1XVVpY2I7fkk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
