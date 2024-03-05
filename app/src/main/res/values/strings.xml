@@ -4,5 +4,10 @@
     <string name="password">Digite sua senha</string>
     <string name="no_account">Não tem conta?</string>
     <string name="register">Cadastre-se</string>
+    <string name="register2">Faça seu cadastro</string>
     <string name="log_in">Logar</string>
+    <string name="sing_up_register">Cadastrar</string>
+    <string name="sign_up_name">Digite seu nome</string>
+    <string name="sign_up_email">Digite seu e-mail</string>
+    <string name="sign_up_password">Digite sua senha</string>
 </resources>
