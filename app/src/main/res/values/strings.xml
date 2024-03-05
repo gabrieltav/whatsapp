@@ -10,4 +10,11 @@
     <string name="sign_up_name">Digite seu nome</string>
     <string name="sign_up_email">Digite seu e-mail</string>
     <string name="sign_up_password">Digite sua senha</string>
+    <string name="fill_in_your_name">Fill in your name!</string>
+    <string name="fill_in_your_email">Fill in your email!</string>
+    <string name="fill_in_your_password">Fill in your password!</string>
+    <string name="successful_registration">Successful registration</string>
+    <string name="invalid_email">Invalid e-mail address, please enter another e-mail address</string>
+    <string name="invalid_email_existing_user">E-mail already belongs to another user</string>
+    <string name="invalid_weak_password">Weak password, enter a new one with letters, numbers and special characters.</string>
 </resources>
