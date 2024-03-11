@@ -14,6 +14,7 @@
     <string name="fill_in_your_email">Fill in your email!</string>
     <string name="fill_in_your_password">Fill in your password!</string>
     <string name="successful_registration">Successful registration</string>
+    <string name="registration_error">Registration error</string>
     <string name="invalid_email">Invalid e-mail address, please enter another e-mail address</string>
     <string name="invalid_email_existing_user">E-mail already belongs to another user</string>
     <string name="invalid_weak_password">Weak password, enter a new one with letters, numbers and special characters.</string>

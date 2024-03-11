@@ -7,7 +7,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.google.firebase.firestore.FirebaseFirestore
 import com.gtavares.whatsapp.databinding.ActivitySignUpBinding
+import com.gtavares.whatsapp.model.User
 import com.gtavares.whatsapp.utils.displayMessage
 
 class SignUpActivity : AppCompatActivity() {
@@ -19,8 +21,14 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var name: String
     private lateinit var email: String
     private lateinit var password: String
+
+    // Firebase
     private val firebaseAuth by lazy {
         FirebaseAuth.getInstance()
+    }
+
+    private val firestore by lazy {
+        FirebaseFirestore.getInstance()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,10 +78,13 @@ class SignUpActivity : AppCompatActivity() {
             email, password
         ).addOnCompleteListener { result ->
             if (result.isSuccessful) {
-                displayMessage(getString(R.string.successful_registration))
-                startActivity(
-                    Intent(applicationContext, MainActivity::class.java)
-                )
+                val userId = result.result.user?.uid
+                if (userId != null) {
+                    val user = User(
+                        userId, name, email
+                    )
+                    saveUserFirestore(user)
+                }
             }
         }.addOnFailureListener { error ->
             try {
@@ -89,6 +100,21 @@ class SignUpActivity : AppCompatActivity() {
                 displayMessage(getString(R.string.invalid_email))
             }
         }
+    }
+
+    private fun saveUserFirestore(user: User) {
+        firestore
+            .collection("users")
+            .document(user.id)
+            .set(user)
+            .addOnSuccessListener {
+                displayMessage(getString(R.string.successful_registration))
+                startActivity(
+                    Intent(applicationContext, MainActivity::class.java)
+                )
+            }.addOnFailureListener {
+                displayMessage(getString(R.string.registration_error))
+            }
     }
 
     private fun initialiseToolbar() {
