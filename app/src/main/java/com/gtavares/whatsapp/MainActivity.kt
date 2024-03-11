@@ -1,11 +1,75 @@
 package com.gtavares.whatsapp
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuProvider
+import com.google.firebase.auth.FirebaseAuth
+import com.gtavares.whatsapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private val binding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+
+    private val firebaseAuth by lazy {
+        FirebaseAuth.getInstance()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
+        initialiseToolbar()
+    }
+
+    private fun initialiseToolbar() {
+        val toolbar = binding.includeMainToolbar.tbMain
+        setSupportActionBar(toolbar)
+        supportActionBar?.apply {
+            title = getString(R.string.app_name)
+        }
+
+        addMenuProvider(
+            object : MenuProvider {
+                override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                    menuInflater.inflate(R.menu.main_menu, menu)
+                }
+
+                override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                    when (menuItem.itemId) {
+                        R.id.item_profile -> {
+                            startActivity(
+                                Intent(applicationContext, ProfileActivity::class.java)
+                            )
+                        }
+
+                        R.id.item_exit -> {
+                            unstickUser()
+                        }
+                    }
+                    return true
+                }
+            }
+        )
+    }
+
+    private fun unstickUser() {
+        AlertDialog.Builder(this)
+            .setTitle("Desligar")
+            .setMessage("Deseja realmente sair")
+            .setNegativeButton("Não") { dialog, position -> }
+            .setPositiveButton("Sim") { dialog, position ->
+                firebaseAuth.signOut()
+                startActivity(
+                    Intent(applicationContext, SignInActivity::class.java)
+                )
+            }
+            .create()
+            .show()
     }
 }
