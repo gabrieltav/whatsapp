@@ -22,7 +22,6 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var email: String
     private lateinit var password: String
 
-    // Firebase
     private val firebaseAuth by lazy {
         FirebaseAuth.getInstance()
     }

@@ -14,8 +14,15 @@
     <string name="fill_in_your_email">Fill in your email!</string>
     <string name="fill_in_your_password">Fill in your password!</string>
     <string name="successful_registration">Successful registration</string>
-    <string name="registration_error">Registration error</string>
-    <string name="invalid_email">Invalid e-mail address, please enter another e-mail address</string>
     <string name="invalid_email_existing_user">E-mail already belongs to another user</string>
     <string name="invalid_weak_password">Weak password, enter a new one with letters, numbers and special characters.</string>
+
+    // SignIn
+    <string name="registration_error">Registration error</string>
+    <string name="logged_in_successfully">Logged in successfully!</string>
+    <string name="validate_error_sign_in_email">Fill in the e-mail!</string>
+    <string name="validate_error_sign_in_password">Fill in the password!</string>
+    <string name="error_sign_in_email">E-mail not registered</string>
+    <string name="error_sign_in_auth_invalid_credentials_exception">E-mail or password is incorrect</string>
+    <string name="invalid_email">Invalid e-mail address, please enter another e-mail address</string>
 </resources>
