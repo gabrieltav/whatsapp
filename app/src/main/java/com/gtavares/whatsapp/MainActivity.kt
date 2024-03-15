@@ -8,7 +8,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuProvider
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
+import com.gtavares.whatsapp.adapters.ViewPagerAdapter
 import com.gtavares.whatsapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +27,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         initialiseToolbar()
+        initializeBasicNavigation()
+    }
+
+    private fun initializeBasicNavigation() {
+        val tabLayout = binding.tabLayoutMain
+        val viewPager = binding.viewPagerMain
+        val flaps = listOf("CHATS", "CONTACTS")
+
+        viewPager.adapter = ViewPagerAdapter(
+            flaps, supportFragmentManager, lifecycle
+        )
+
+        tabLayout.isTabIndicatorFullWidth = true
+        TabLayoutMediator(tabLayout, viewPager) { flap, position ->
+            flap.text = flaps[position]
+        }.attach()
     }
 
     private fun initialiseToolbar() {

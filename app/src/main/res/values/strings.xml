@@ -29,4 +29,8 @@
     <string name="error_sign_in_email">E-mail not registered</string>
     <string name="error_sign_in_auth_invalid_credentials_exception">E-mail or password is incorrect</string>
     <string name="invalid_email">Invalid e-mail address, please enter another e-mail address</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_chats">Chats</string>
+    <string name="fragment_contacts">Contacts</string>
 </resources>
