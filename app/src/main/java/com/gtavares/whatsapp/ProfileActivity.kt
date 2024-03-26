@@ -2,13 +2,12 @@ package com.gtavares.whatsapp
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.gtavares.whatsapp.databinding.ActivityProfileBinding
+import com.gtavares.whatsapp.utils.displayMessage
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -18,15 +17,36 @@ class ProfileActivity : AppCompatActivity() {
     private var hasCameraPermission = false
     private var hasGalleryPermission = false
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private val managerGallery = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri ->
+        if (uri != null) {
+            binding.imageProfile.setImageURI(uri)
+        } else {
+            displayMessage("Nenhuma imagem selacionada")
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         initialiseToolbar()
         requestPermissionsApp()
+        initialiseEventClick()
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun initialiseEventClick() {
+        binding.fabSelect.setOnClickListener {
+            if (hasGalleryPermission) {
+                managerGallery.launch("image/*")
+            } else {
+                displayMessage("Não tem permissão para acessar galeria")
+                requestPermissionsApp()
+            }
+        }
+    }
+
     private fun requestPermissionsApp() {
 
         hasCameraPermission = ContextCompat.checkSelfPermission(
